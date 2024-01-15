@@ -1,0 +1,215 @@
+Escenario base (a)
+
+	01- Tx entre dos dir. no excluidas, ambas con astkfee y devfee 0%
+	02- Tx entre dos dir. no excluidas, ambas con astkfee en 0% y una con devfee en 0% y la otra con devfee positivo.
+	03- Tx entre dos dir. no excluidas, ambas con astkfee en 0% y ambas con devfee positivo.
+
+	04- Tx entre dos dir. no excluidas, una con astkfee en 0% y la otra con astkfee positivo y ambas con devfee 0%.
+	05- Tx entre dos dir. no excluidas, una con astkfee en 0% y la otra con astkfee positivo y una con devfee en 0% y la otra con devfee positivo.
+	06- Tx entre dos dir. no excluidas, una con astkfee en 0% y la otra con astkfee positivo y ambas con devfee positivo.
+
+	07- Tx entre dos dir. no excluidas, ambas con astkfee positivo y ambas con devfee 0%.
+	08- Tx entre dos dir. no excluidas, ambas con astkfee positivo y una con devfee en 0% y la otra con devfee positivo.
+	09- Tx entre dos dir. no excluidas, ambas con astkfee positivo y ambas con devfee positivo.
+
+
+	10- Tx entre una dir. no excluida y otra excluida, ambas con astkfee y devfee 0%
+	11- Tx entre una dir. no excluida y otra excluida, ambas con astkfee en 0% y una con devfee en 0% y la otra con devfee positivo.
+	12- Tx entre una dir. no excluida y otra excluida, ambas con astkfee en 0% y ambas con devfee positivo.
+
+	13- Tx entre una dir. no excluida y otra excluida, una con astkfee en 0% y la otra con astkfee positivo y ambas con devfee 0%.
+	14- Tx entre una dir. no excluida y otra excluida, una con astkfee en 0% y la otra con astkfee positivo y una con devfee en 0% y la otra con devfee positivo.
+	15- Tx entre una dir. no excluida y otra excluida, una con astkfee en 0% y la otra con astkfee positivo y ambas con devfee positivo.
+
+	16- Tx entre una dir. no excluida y otra excluida, ambas con astkfee positivo y ambas con devfee 0%.
+	17- Tx entre una dir. no excluida y otra excluida, ambas con astkfee positivo y una con devfee en 0% y la otra con devfee positivo.
+	18- Tx entre una dir. no excluida y otra excluida, ambas con astkfee positivo y ambas con devfee positivo.
+
+
+
+	19- Tx entre una dir. excluida y otra no excluida, ambas con astkfee y devfee 0%
+	20- Tx entre una dir. excluida y otra no excluida, ambas con astkfee en 0% y una con devfee en 0% y la otra con devfee positivo.
+	21- Tx entre una dir. excluida y otra no excluida, ambas con astkfee en 0% y ambas con devfee positivo.
+
+	22- Tx entre una dir. excluida y otra no excluida, una con astkfee en 0% y la otra con astkfee positivo y ambas con devfee 0%.
+	23- Tx entre una dir. excluida y otra no excluida, una con astkfee en 0% y la otra con astkfee positivo y una con devfee en 0% y la otra con devfee positivo.
+	24- Tx entre una dir. excluida y otra no excluida, una con astkfee en 0% y la otra con astkfee positivo y ambas con devfee positivo.
+
+	25- Tx entre una dir. excluida y otra no excluida, ambas con astkfee positivo y ambas con devfee 0%.
+	26- Tx entre una dir. excluida y otra no excluida, ambas con astkfee positivo y una con devfee en 0% y la otra con devfee positivo.
+	27- Tx entre una dir. excluida y otra no excluida, ambas con astkfee positivo y ambas con devfee positivo.
+
+
+
+
+	28- Tx entre dos dir. excluidas, ambas con astkfee positivo y ambas con devfee positivo.
+	29- Tx entre dos dir. excluidas, ambas con astkfee y devfee 0%
+
+
+30- TxFrom entre dos dir. no excluidas, ambas con astkfee y devfee 0% 
+31- TxFrom entre dos dir. no excluidas, ambas con astkfee y devfee positivo 
+
+32- TxFrom entre una dir. no excluida y otra excluida, ambas con astkfee y devfee 0% 
+33- TxFrom entre una dir. no excluida y otra excluida, ambas con astkfee y devfee positivo 
+
+34- TxFrom entre una dir. excluida y otra no excluida, ambas con astkfee y devfee 0% 
+35- TxFrom entre una dir. excluida y otra no excluida, ambas con astkfee y devfee positivo 
+
+36- TxFrom entre dos dir. excluidas, ambas con astkfee y devfee 0% 
+37- TxFrom entre dos dir. excluidas, ambas con astkfee y devfee positivo 
+
+38- Tx and TxFrom => balcklist (todas deben ser fallidas fallida)
+
+39- Tx permitida por sobre el limite variado los limites de tx y tenencia, (Setear maxima transferencia en 0, setear maxima tenencia en 0. ambas debe estar prohibida)
+
+40- Pause testing
+(Cambiar palabra balance cuando se excluye para ver si eso lo detecta como balance de la gente. Solo por si acaso)
+
+
+
+
+Mintable
+
+A large amount of this token can be minted by a private wallet or contract.
+
+Exploit Example:
+Leo Finance
+YFFC
+Walletreum
+High Risk
+
+
+
+
+
+
+Pausable
+
+Token transfers can be paused, preventing swapping or selling.
+
+Exploit Example:
+Xdef finance (relaunch)
+High Risk
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Blacklisting
+
+Wallets can be blacklisted from being able to transfer, swap or sell this token.
+
+Exploit Example:
+Squid Game
+ValentineFloki
+High Risk
+
+
+
+
+
+
+
+Transfer Fee
+
+Exploit Example:
+Snowflake Floki
+PolyYeld Finance
+High Risk
+
+
+
+
+
+
+
+
+
+
+
+Transfer Limit
+
+The max/min amount of token transferred can be limited (max could be set to 0).
+
+High Risk
+
+
+
+
+
+
+
+Centralized Balance Controls
+
+The contract owner is able to control all token holders' balances.
+
+Exploit Example:
+Wolf Protocol
+High Risk
+
+
+
+
+
+
+
+
+Missing Liquidity
+
+Token liquidity (pairs) not found.
+
+High Risk
+
+
+
+
+Dump Risk
+
+A private wallet owns a significant percentage of this token's total supply.
+
+Exploit Example:
+DARK DEFI
+Game Swap Exchange
+High Risk
+
+
+
+
+Recently Deployed Contract
+
+The smart contract was deployed less than 14 days ago.
+
+Attention Required
+
+
+
+
+
+
+
+
+
+Whitelisting
+
+Detected whitelisting feature enables unique users to bypass restrictions, potentially raising security and integrity concerns.
+
+Attention Required
+
+
+
+
+
+
+
+
