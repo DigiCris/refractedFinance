@@ -74,7 +74,7 @@ contract('No Excluidas', accounts => {
         
 
 
-        
+        // standar -> excluded (excluded) 0 fees
 
         it("11 - transferFrom between standar and excluded (must fail)", async ()=> {//approve(address spender, uint256 value)
             try{//transferFrom(address sender, address recipient, uint256 amount) 
@@ -137,6 +137,7 @@ contract('No Excluidas', accounts => {
 
 
         // transferencia de std1=excluida a std2=standar
+        // excluded -> standard (standard)
 
         
 

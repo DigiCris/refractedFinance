@@ -72,7 +72,7 @@ contract('No Excluidas', accounts => {
 
 
         
-
+// standard -> excluded (excluded)
 
         it("11 - transferFrom between standar and excluded (must fail)", async ()=> {//approve(address spender, uint256 value)
             try{//transferFrom(address sender, address recipient, uint256 amount) 
@@ -112,11 +112,11 @@ contract('No Excluidas', accounts => {
 
 
 
-
+// 33) Standard -> Excluded (Excluded)
         it("15 - Verify balances (error 0.6 and 230 ppm for ower and dev)", async ()=> {
-            await checkBalance(owner,'19990049'+'987465624244257940');
-            await checkBalance(std1,'9875');
-            await checkBalance(dev,'25'+'000062515589825217');
+            await checkBalance(owner,'19990004'+'998746562430346372');
+            await checkBalance(std1,'9965');
+            await checkBalance(dev,'25'+'000006251558982529');
         });
 
 
@@ -139,7 +139,7 @@ contract('No Excluidas', accounts => {
         
 
 
-
+// excluded -> standard (standard)
         it("18 - transferFrom between excluded to Standar (must failed)", async ()=> {//approve(address spender, uint256 value)
             try{//transferFrom(address sender, address recipient, uint256 amount) 
                 await erc20_instance.transferFrom(std1, std2, '8000'+weiToEth, { from: std2 });
@@ -183,12 +183,26 @@ contract('No Excluidas', accounts => {
             }
         });
 
+/*
+            await checkBalance(owner,'19990004'+'998746562430346372');
+            await checkBalance(std1,'9965');
+            await checkBalance(dev,'25'+'000006251558982529');
 
-        it("23 - Verify balances (error 0 ppm)", async ()=> {
-            await checkBalance(owner,'19990053'+'985663836927012925');// 
-            await checkBalance(std1,'1875'); // exacto
-            await checkBalance(std2,'7972'+'001594475059916942'); // mas monedas
-            await checkBalance(dev,'45'+'000071516026023889'); // 
+            std1 -> std2 = 8000 (standard)
+            std2 => dev=25   stk=100
+
+            std1 = 9965 - 8000 = 1965
+            std2 = 0 + 8000 - 100 +fee = 7900 + fee = 7900015800776213131470
+            fee = 7900 * 80 / 39998035 = 0.01580077621313147008346785035815
+
+            dev = 45,0000962559929534657873276774
+                     000071516026023889
+*/
+        it("23 - Verify balances (error 6 ppm)", async ()=> {
+            await checkBalance(owner,'19990044'+'980800642446207778');// 
+            await checkBalance(std1,'1965'); // exacto
+            await checkBalance(std2,'7900'+'015800807816302728'); // mas monedas
+            await checkBalance(dev,'45'+'000096256172971555'); // 
         });
 
         it("24 - Allowance still 1000", async ()=> {

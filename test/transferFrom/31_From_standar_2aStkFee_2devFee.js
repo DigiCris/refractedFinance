@@ -48,10 +48,10 @@ contract('No Excluidas', accounts => {
             expect(devWallet.toString()).to.equal(dev.toString());
         });
 
-        it("07 - setAStkFee to 100 to owner", async ()=> {
-            await erc20_instance.setAStkFee(owner, false, '100');
+        it("07 - setAStkFee to 10 to owner", async ()=> {
+            await erc20_instance.setAStkFee(owner, false, '10');
             aStkFee=await erc20_instance.aStkFee(owner);
-            expect(aStkFee.toString()).to.equal('100'.toString());
+            expect(aStkFee.toString()).to.equal('10'.toString());
         });
 
         it("08 - setAStkFee to 100 to std1", async ()=> {
@@ -60,10 +60,10 @@ contract('No Excluidas', accounts => {
             expect(aStkFee.toString()).to.equal('100'.toString());
         });
 
-        it("09 - setDevFee to 25 to owner", async ()=> {
-            await erc20_instance.setDevFee(owner, 25);
+        it("09 - setDevFee to 20 to owner", async ()=> {
+            await erc20_instance.setDevFee(owner, 20);
             devFee=await erc20_instance.readDevFee(owner);
-            expect(devFee.toString()).to.equal('25'.toString());
+            expect(devFee.toString()).to.equal('20'.toString());
         });
 
         it("10 - setDevFee to 25 to std1", async ()=> {

@@ -117,9 +117,9 @@ contract('No Excluidas', accounts => {
 
 
         it("15 - Verify balances (error 0.6 and 230 ppm for ower and dev)", async ()=> {
-            await checkBalance(owner,'19990049'+'987465624244257940');
-            await checkBalance(std1,'9875');
-            await checkBalance(dev,'25'+'000062515589825217');
+            await checkBalance(owner,'19990004'+'998746562430346372');
+            await checkBalance(std1,'9965');
+            await checkBalance(dev,'25'+'000006251558982529');
         });
 
 

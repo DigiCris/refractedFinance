@@ -127,16 +127,32 @@ contract HedgeCoin is ERC20, ERC20Pausable, Ownable {
         return true;
     }
 
-    function _transferStandard(address sender, address recipient, uint256 tAmount) private {
-        uint256 rAmount = tAmount * q/q_init; //10000
-        int256 _fee = fee[sender];
-        if(_fee == 0) {
-            _fee = int256(defaultAStkFee); 
-        } else if(_fee < 0){
-            _fee = 0;
+    function _getTransferFee(address msgSender) internal view returns(uint256) {
+
+        if (!_isExcluded[msgSender]) {
+            int256 _fee = fee[msgSender];
+            if(_fee == 0) {
+                _fee = int256(defaultAStkFee); 
+            } else if(_fee < 0){
+                _fee = 0;
+            }       
+            return(uint256(_fee));
+        } else {
+            uint256 _fee = uint256(fee[msgSender]);
+            if(_fee>10000){
+                _fee=0;
+            }
+            return(uint256(_fee));
         }
+    }
+
+    function _transferStandard(address sender, address recipient, uint256 tAmount) private {
+        address msgSender = _msgSender();
+        uint256 _fee = _getTransferFee(msgSender);
+        uint256 rAmount = tAmount * q/q_init; //10000
+
         uint256 rfee = uint256(_fee) * rAmount /10000; // 100
-        uint256 rDev = readDevFee(sender) * rAmount / 10000; // 0
+        uint256 rDev = readDevFee(msgSender) * rAmount / 10000; // 0
 
     // Agreegado para separar las transferencias y la quema y emitir log
         //uint256 tDev = rDev * q_init / q;
@@ -160,14 +176,11 @@ contract HedgeCoin is ERC20, ERC20Pausable, Ownable {
     }
 
     function _transferToExcluded(address sender, address recipient, uint256 tAmount) private {
+        address msgSender = _msgSender();
+        uint256 _fee = _getTransferFee(msgSender);
         uint256 rAmount = tAmount * q/q_init; //10k
-        int256 _fee = fee[sender];
-        if(_fee == 0) {
-            _fee = int256(defaultAStkFee); 
-        } else if(_fee < 0){
-            _fee = 0;
-        }
-        uint256 rDev = readDevFee(sender) * rAmount / 10000; // 0
+
+        uint256 rDev = readDevFee(msgSender) * rAmount / 10000; // 0
         uint256 tDev = rDev * q_init / q; // 0
         uint256 tfee = uint256(_fee) * tAmount /10000;// 100
         uint256 transferRealAmount = tAmount - tfee - tDev;  // 10k-100 = 9900
@@ -192,14 +205,13 @@ contract HedgeCoin is ERC20, ERC20Pausable, Ownable {
     event Burn(address indexed sender, uint256 taxPaid);
 
     function _transferFromExcluded(address sender, address recipient, uint256 tAmount) private {
-        uint256 _fee = uint256(fee[sender]);
-        if(_fee>10000){
-            _fee=0;
-        }
+        address msgSender = _msgSender();
+        uint256 _fee = _getTransferFee(msgSender);
+
         uint256 tFee = _fee * tAmount /10000;//0
         uint256 rFee = tFee * q/q_init; //0
         uint256 rAmount = tAmount * q/q_init; //9975
-        uint256 rDev = readDevFee(sender) * rAmount / 10000; //0
+        uint256 rDev = readDevFee(msgSender) * rAmount / 10000; //0
         rAmount -= rFee; // 9975
         _te -= tAmount;
         _tn += tAmount;

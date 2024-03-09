@@ -152,7 +152,7 @@ contract('No Excluidas', accounts => {
         });
 
 
-
+// excluded -> excluded (excluded)
         it("23 - transferFrom between excluded (must fail)", async ()=> {//approve(address spender, uint256 value)
             try{//transferFrom(address sender, address recipient, uint256 amount) 
                 await erc20_instance.transferFrom(std2, std1, '7970'+weiToEth, { from: std1 });
