@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	<script src="./contractData.js"></script>
+	<script src="./web3.min.js"></script>
+	<script src="./scripts.js"></script>
+	<script src="./contractInteraction.js"></script>
+</head>
+<body>
+
+<button id="conect" onclick="connect()"><label id="account" style="cursor: pointer;">Conectar</label> </button><br>
+
+  <div id='swap-box'>
+    <div id="swap-menu">
+      <label class="token">BNB</label> to <label class="token">HDGC</label>
+    </div>
+
+    <div id="swap-title-box">
+		  <p id="swap-title">Swap</p>
+		  <p id="swap-subtitle">Trade tokens in an instant</p>
+	  </div>
+
+    <div id="swap-form-box">
+      <div id='form' onSubmit='handleSubmit()'>
+
+        <label>
+          <img id="alineadoTextoImagenCentro" src='./HDGC.png' class="logo" /> <label class="token">HDGC</label>
+          <div class="swap-balance pick-balance">Balance: <label class="balance">0</label></div>
+        </label>
+
+        <input onChange='setValueTokenToSpend()' type="text" class="IHAVE" placeholder="0.0"></input>
+
+       <br>
+
+        <label>
+        <img id="alineadoTextoImagenCentro" src='./BNB.png' class="logo"/><label class="token">BNB</label>
+          <div class="swap-balance">Balance: <label class="balance">0</label></div>
+        </label>
+
+        <input onChange='setValueTokenToReceive()' type="text" class="IWANT" placeholder="0.0"></input>
+
+        <div className="separador-vertical"></div>
+
+        <label id="swap-price-word">Price 
+          <div id="swap-price">
+            TOKEN_PRICE <label class="precio">0</label> BNB
+          </div>
+        </label>
+
+        
+        <button id="swap-submit" name="submit" onclick="handleSubmit()">Swap</button>
+        
+      </div>
+    </div>
+
+  </div>
+
+
+  <div id="toast"></div>
+
+  <div id="spinner" class="spinner-container">
+    <div class="spinner"></div>
+  </div>
+  
+
+
+</body>
+</html>
