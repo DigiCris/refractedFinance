@@ -11,15 +11,18 @@ interface IToken {
 }
 
 // Address for interfaces, diferent pairs= https://docs.chain.link/data-feeds/price-feeds/addresses/
-
+// token = 0x7B934F688A55703913A35821a7cA758de62C074B
+//treasure
 contract Ito is Ownable, ReentrancyGuard{
     AggregatorV3Interface internal precioBnb;
-    address constant goerliAggrAddr = 0x0567F2323251f0Aab15c8dFb1967E4e8A7D42aeE;
+    address constant goerliAggrAddr = 0x694AA1769357215DE4FAC081bf1f309aDC325306;//0x0567F2323251f0Aab15c8dFb1967E4e8A7D42aeE;
     uint256 public tokenPriceInUSD; // 8 decimales
     IToken public token;
     IToken public wrongToken;
     address payable treasure;
     uint256 public maxBuyDefault;
+    int256 public multiplier;
+    int256 public divisor;
     mapping (address => uint256) public maxBuy;
     mapping (address => uint256) private QuantityBought;
 
@@ -28,6 +31,16 @@ contract Ito is Ownable, ReentrancyGuard{
         tokenPriceInUSD = 1 ;
         treasure =payable (msg.sender);
         maxBuyDefault=10000000000000000000000;
+        multiplier = 1;
+        divisor = 1;
+    }
+
+    function setMultiplier(int256 _multiplier) external onlyOwner {
+        multiplier = _multiplier;
+    }
+
+    function setdivisor(int256 _divisor) external onlyOwner {
+        divisor = _divisor;
     }
 
     function setMaxBuyDefault(uint256 _maxBuy) external onlyOwner {
@@ -60,6 +73,7 @@ contract Ito is Ownable, ReentrancyGuard{
 
     function lastPriceBNB() public view returns (uint256){
         (, int256 answer, , , ) = precioBnb.latestRoundData();
+        answer = answer * multiplier / divisor;
         return uint256(answer);
     }
 
