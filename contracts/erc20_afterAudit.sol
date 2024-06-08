@@ -668,12 +668,7 @@ abstract contract ERC20 is Context, IERC20, IERC20Metadata, IERC20Errors {
 
 // Original license: SPDX_License_Identifier: MIT
 //pragma solidity ^0.8.23;
-//15min
-//90min
-//25 min => terminar de emitir los eventos creados
-//30 min => falta checkear test y slither
-//16:25 -
-// context, erc20.sol
+//https://amoy.polygonscan.com/address/0x6142B18589f60c97b6b11BC4D6a438205fD827C6#code
 contract HedgeCoin is ERC20, Ownable {
 
     mapping (address => uint256) public rOwned;
