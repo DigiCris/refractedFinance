@@ -49,12 +49,12 @@ contract('No Excluidas', accounts => {
         }); //_isExcluded
 
         it("07 - std1 excluded", async ()=> {
-            const _isExcluded= await erc20_instance._isExcluded(std1);
+            const _isExcluded= await erc20_instance.isExcluded(std1);
             expect(_isExcluded.toString()).to.equal(true.toString());
         });
 
         it("08 - owner not excluded", async ()=> {
-            const _isExcluded= await erc20_instance._isExcluded(owner);
+            const _isExcluded= await erc20_instance.isExcluded(owner);
             expect(_isExcluded.toString()).to.equal(false.toString());
         }); //_isExcluded
 
@@ -96,14 +96,14 @@ contract('No Excluidas', accounts => {
         it("13 - transferFrom between standars", async ()=> {//approve(address spender, uint256 value)
             try{//transferFrom(address sender, address recipient, uint256 amount) 
                 std1B = await erc20_instance.balanceOf(std1);
-                console.log("balance std1 antes del envío = "+std1B);
+                //console.log("balance std1 antes del envío = "+std1B);
                 ownerB = await erc20_instance.balanceOf(owner);
-                console.log("balance owner antes del envío = "+ownerB);
+                //console.log("balance owner antes del envío = "+ownerB);
                 await erc20_instance.transferFrom(owner, std1, '10000'+weiToEth, { from: std1 });
                 ownerB = await erc20_instance.balanceOf(owner);
-                console.log("balance owner despues del envío = "+ownerB);
+                //console.log("balance owner despues del envío = "+ownerB);
                 std1B = await erc20_instance.balanceOf(std1);
-                console.log("balance std1 despues del envío = "+std1B);
+                //console.log("balance std1 despues del envío = "+std1B);
                 expect(1).to.equal(1);
             } catch(error){
                 expect(error.hijackedStack).to.include("No debio entrar aca");

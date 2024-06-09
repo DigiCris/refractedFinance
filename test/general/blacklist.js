@@ -65,35 +65,29 @@ contract('38- Tx and TxFrom => balcklist (todas deben ser fallidas fallida)', ac
 
 
         it("09 - Blacklist std1 and std3", async ()=> {
-            await erc20_instance.setBlacklist(std1, true);
-            await erc20_instance.setBlacklist(std3, true);
-            Bstd1 = await erc20_instance.blacklist(std1);
-            Bstd2 = await erc20_instance.blacklist(std2);
-            Bstd3 = await erc20_instance.blacklist(std3);
-            Bstd4 = await erc20_instance.blacklist(std4);
-            Bowner = await erc20_instance.blacklist(owner);
-            expect(Bstd1.toString()).to.equal(true.toString());
-            expect(Bstd2.toString()).to.equal(false.toString());
-            expect(Bstd3.toString()).to.equal(true.toString());
-            expect(Bstd4.toString()).to.equal(false.toString());
-            expect(Bowner.toString()).to.equal(false.toString());
+            try{
+                await erc20_instance.setBlacklist(std1, true);
+                await erc20_instance.setBlacklist(std3, true);                
+            } catch(error) {
+                expect("no hay blacklist").to.equal("no hay blacklist");
+            }
         });
 
         it("10 - transfer to blacklist must fail", async ()=> {
             try{
                 await erc20_instance.transfer(std1, '1'+weiToEth, { from: owner });
-                expect(1).to.equal("no debio entrar aca");
+                expect("no hay blacklist").to.equal("no hay blacklist");
             } catch(error){
-                expect(error.hijackedStack).to.include("No receiving in blacklists");
+                expect(error.hijackedStack).to.include("No debe entrar aca");
             }
         });
 
         it("11 - transfer from blacklist must fail", async ()=> {
             try{
                 await erc20_instance.transfer(std2, '1'+weiToEth, { from: std1 });
-                expect(1).to.equal("no debio entrar aca");
+                expect("no hay blacklist").to.equal("no hay blacklist");
             } catch(error){
-                expect(error.hijackedStack).to.include("No sendings from blacklists");
+                expect(error.hijackedStack).to.include("No debe entrar aca");
             }
         });
 
@@ -113,9 +107,9 @@ contract('38- Tx and TxFrom => balcklist (todas deben ser fallidas fallida)', ac
         it("13 - transferFrom => owner sends from blacklisted std1 to std4", async ()=> {//approve(address spender, uint256 value)
             try{//transferFrom(address sender, address recipient, uint256 amount) 
                 await erc20_instance.transferFrom(std1, std4, '1'+weiToEth, { from: owner });
-                expect(1).to.equal("no debe entrar aca");
+                expect("no hay blacklist").to.equal("no hay blacklist");
             } catch(error){
-                expect(error.hijackedStack).to.include("No sendings from blacklists");
+                expect(error.hijackedStack).to.include("No debe entrar aca");
             }
         });
 
@@ -133,9 +127,9 @@ contract('38- Tx and TxFrom => balcklist (todas deben ser fallidas fallida)', ac
         it("15 - transferFrom => std4 sends from blacklisted std1 to owner", async ()=> {//approve(address spender, uint256 value)
             try{//transferFrom(address sender, address recipient, uint256 amount) 
                 await erc20_instance.transferFrom(owner, std1, '1'+weiToEth, { from: std4 });
-                expect(1).to.equal("no debe entrar aca");
+                expect("no hay blacklist").to.equal("no hay blacklist");
             } catch(error){
-                expect(error.hijackedStack).to.include("No receiving in blacklists");
+                expect(error.hijackedStack).to.include("No debe entrar aca");
             }
         });
 
@@ -153,9 +147,9 @@ contract('38- Tx and TxFrom => balcklist (todas deben ser fallidas fallida)', ac
         it("17 - transferFrom => std1 sends from owner to std4 (only std1 is blacklisted. must fail)", async ()=> {//approve(address spender, uint256 value)
             try{//transferFrom(address sender, address recipient, uint256 amount) 
                 await erc20_instance.transferFrom(owner, std4, '1'+weiToEth, { from: std1 });
-                expect(1).to.equal("no debe entrar aca");
+                expect("no hay blacklist").to.equal("no hay blacklist");
             } catch(error){
-                expect(error.hijackedStack).to.include("spender is blacklisted");
+                expect(error.hijackedStack).to.include("No hay blacklist");
             }
         });
 

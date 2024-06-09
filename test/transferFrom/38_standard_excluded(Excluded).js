@@ -43,17 +43,17 @@ contract('No Excluidas', accounts => {
         }); //_isExcluded
 
         it("06 - exc1 excluded", async ()=> {
-            const _isExcluded= await erc20_instance._isExcluded(exc1);
+            const _isExcluded= await erc20_instance.isExcluded(exc1);
             expect(_isExcluded.toString()).to.equal(true.toString());
         });
 
         it("07 - owner not excluded", async ()=> {
-            const _isExcluded= await erc20_instance._isExcluded(owner);
+            const _isExcluded= await erc20_instance.isExcluded(owner);
             expect(_isExcluded.toString()).to.equal(false.toString());
         }); //_isExcluded
 
         it("08 - std1 not excluded", async ()=> {
-            const _isExcluded= await erc20_instance._isExcluded(std1);
+            const _isExcluded= await erc20_instance.isExcluded(std1);
             expect(_isExcluded.toString()).to.equal(false.toString());
         }); //_isExcluded
 

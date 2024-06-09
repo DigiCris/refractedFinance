@@ -49,12 +49,12 @@ contract('No Excluidas', accounts => {
         }); //_isExcluded
 
         it("07 - std1 excluded", async ()=> {
-            const _isExcluded= await erc20_instance._isExcluded(std1);
+            const _isExcluded= await erc20_instance.isExcluded(std1);
             expect(_isExcluded.toString()).to.equal(true.toString());
         });
 
         it("08 - owner not excluded", async ()=> {
-            const _isExcluded= await erc20_instance._isExcluded(owner);
+            const _isExcluded= await erc20_instance.isExcluded(owner);
             expect(_isExcluded.toString()).to.equal(false.toString());
         }); //_isExcluded
 
@@ -130,7 +130,7 @@ contract('No Excluidas', accounts => {
         });
 
         it("19 - std2 excluded", async ()=> {
-            const _isExcluded= await erc20_instance._isExcluded(std2);
+            const _isExcluded= await erc20_instance.isExcluded(std2);
             expect(_isExcluded.toString()).to.equal(true.toString());
         });
 
@@ -147,7 +147,7 @@ contract('No Excluidas', accounts => {
         });
 
         it("22 - std1 excluded", async ()=> {
-            const _isExcluded= await erc20_instance._isExcluded(std1);
+            const _isExcluded= await erc20_instance.isExcluded(std1);
             expect(_isExcluded.toString()).to.equal(true.toString());
         });
 
